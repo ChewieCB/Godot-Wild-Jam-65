@@ -1,4 +1,6 @@
-Sprite2D
 RemoteTransform2D
+Sprite2D
 Bone2D
+Node2D
+Marker2D
 Skeleton2D
