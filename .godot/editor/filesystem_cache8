@@ -1,6 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1705151070
-export_presets.cfg::TextFile::-1::1705150974::0::1::::<><>::
+::res://::1705152103
+export_presets.cfg::TextFile::-1::1705152103::0::1::::<><>::
 icon.svg::CompressedTexture2D::5928101233744509625::1705149553::1705149558::1::::<><>::
 README.md::TextFile::-1::1705149609::0::1::::<><>::
 ::res://assets/::1705151168
@@ -18,9 +18,14 @@ FrontUpperArm.png::CompressedTexture2D::8775252973374331022::1705149442::1705151
 Head.png::CompressedTexture2D::2971669313515716709::1705149442::1705151210::1::::<><>::
 Torso.png::CompressedTexture2D::2342018238585307726::1705149442::1705151210::1::::<><>::
 ::res://dist/::1705150872
-::res://dist/web/::1705151110
+::res://dist/web/::1705152104
 gdwj65.apple-touch-icon.png::CompressedTexture2D::8619820349373959414::1705151100::1705151110::1::::<><>::
 gdwj65.icon.png::CompressedTexture2D::1032058405463056435::1705151100::1705151110::1::::<><>::
 gdwj65.png::CompressedTexture2D::8861691640043589645::1705151100::1705151110::1::::<><>::
+index.apple-touch-icon.png::CompressedTexture2D::1217380403863635631::1705152104::1705152213::1::::<><>::
+index.icon.png::CompressedTexture2D::6735890724378024375::1705152104::1705152213::1::::<><>::
+index.png::CompressedTexture2D::8869209905239609281::1705152104::1705152213::1::::<><>::
 ::res://src/::1705151215
-::res://src/characters/::1705151215
+::res://src/characters/::1705151219
+::res://src/characters/temp/::1705151733
+TempCharacter.tscn::PackedScene::6618029295808453984::1705151733::0::1::::<><>::uid://8mqx0exwbsfu::::res://assets/characters/temp/sprites/Torso.png<>uid://dp0g44pwh4wwk::::res://assets/characters/temp/sprites/FrontLeg.png<>uid://b1x4jrqqn3q4f::::res://assets/characters/temp/sprites/FrontLowerLeg.png<>uid://bilq7vdlhop6l::::res://assets/characters/temp/sprites/Head.png<>uid://dxa2etmdqy25g::::res://assets/characters/temp/sprites/FrontUpperArm.png<>uid://b2hastjhlfir8::::res://assets/characters/temp/sprites/FrontForearm.png
