@@ -1,1 +1,4 @@
+res://src/levels/test_level/TestLevel.tscn
 res://src/characters/temp/TempCharacter.tscn
+res://src/characters/temp/temp_character.gd
+res://src/ui/main/squat_controls/SquatControlUI.tscn
