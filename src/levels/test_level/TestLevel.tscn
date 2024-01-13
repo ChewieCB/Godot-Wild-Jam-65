@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx0u470l8wia5"]
+
+[ext_resource type="PackedScene" uid="uid://c1j28f121d177" path="res://src/characters/temp/TempCharacter.tscn" id="1_mtmer"]
+[ext_resource type="PackedScene" uid="uid://cuiv2rf5m1g2l" path="res://src/ui/main/squat_controls/SquatControlUI.tscn" id="2_cf8s5"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="TempCharacter" parent="." instance=ExtResource("1_mtmer")]
+position = Vector2(168, 312)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SquatControlUI" parent="UI" instance=ExtResource("2_cf8s5")]

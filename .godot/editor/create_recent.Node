@@ -1,3 +1,9 @@
+TextureRect
+Label
+MarginContainer
+HBoxContainer
+Button
+CanvasLayer
 AnimationTree
 AnimationPlayer
 RemoteTransform2D
