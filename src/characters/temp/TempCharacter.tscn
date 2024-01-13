@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1j28f121d177"]
+[gd_scene load_steps=24 format=3 uid="uid://c1j28f121d177"]
 
 [ext_resource type="Texture2D" uid="uid://8mqx0exwbsfu" path="res://assets/characters/temp/sprites/Torso.png" id="1_0mpss"]
 [ext_resource type="Texture2D" uid="uid://wys1kyub6vcq" path="res://assets/characters/temp/sprites/BackArm.png" id="1_bcg64"]
@@ -15,106 +15,344 @@
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_nx5aa"]
 target_nodepath = NodePath("../IKTargets/ArmTarget")
 flip_bend_direction = true
-joint_one_bone_idx = 6
+joint_one_bone_idx = 4
 joint_one_bone2d_node = NodePath("TorsoBone/UpperArmBackBone")
-joint_two_bone_idx = 7
+joint_two_bone_idx = 5
 joint_two_bone2d_node = NodePath("TorsoBone/UpperArmBackBone/ForearmBackBone")
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_3d3gp"]
 target_nodepath = NodePath("../IKTargets/ArmTarget")
 flip_bend_direction = true
-joint_one_bone_idx = 4
+joint_one_bone_idx = 2
 joint_one_bone2d_node = NodePath("TorsoBone/UpperArmFrontBone")
-joint_two_bone_idx = 5
+joint_two_bone_idx = 3
 joint_two_bone2d_node = NodePath("TorsoBone/UpperArmFrontBone/ForearmFrontBone")
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_y348n"]
+bone_index = 1
+bone2d_node = NodePath("TorsoBone/HeadBone")
+target_nodepath = NodePath("../IKTargets/ArmTarget")
+enable_constraint = true
+constraint_angle_min = -90.0
+constraint_angle_max = 75.0
+constraint_angle_invert = true
+constraint_in_localspace = true
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_jqcvf"]
+target_nodepath = NodePath("../IKTargets/LegsTarget")
+joint_one_bone_idx = 6
+joint_one_bone2d_node = NodePath("TorsoBone/UpperLegFrontBone")
+joint_two_bone_idx = 7
+joint_two_bone2d_node = NodePath("TorsoBone/UpperLegFrontBone/LowerLegFrontBone")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_u0dmq"]
+target_nodepath = NodePath("../IKTargets/LegsTarget")
+joint_one_bone_idx = 8
+joint_one_bone2d_node = NodePath("TorsoBone/UpperLegBackBone")
+joint_two_bone_idx = 9
+joint_two_bone2d_node = NodePath("TorsoBone/UpperLegBackBone/LowerLegBackBone")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_kggbr"]
 enabled = true
-modification_count = 2
+modification_count = 5
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_nx5aa")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_3d3gp")
+modifications/2 = SubResource("SkeletonModification2DLookAt_y348n")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_jqcvf")
+modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_u0dmq")
+
+[sub_resource type="Animation" id="Animation_qaom1"]
+resource_name = "squat"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/TorsoBone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-169, 377)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/TorsoBone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.641807]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/ArmTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(321, 612)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IKTargets/LegsTarget:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(107, 639)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/TorsoBone/UpperLegFrontBone:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23.7108, 65.161)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/TorsoBone/UpperLegFrontBone:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.36682]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D/TorsoBone/UpperLegBackBone:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9.71308, 51.4173)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton2D/TorsoBone/UpperLegBackBone:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.41867]
+}
+
+[sub_resource type="Animation" id="Animation_qgsux"]
+resource_name = "stand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/TorsoBone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, 129)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/TorsoBone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.00421112]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/LegsTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(123, 623)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/TorsoBone/UpperLegFrontBone:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 22)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/TorsoBone/UpperLegFrontBone:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0806947]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/TorsoBone/UpperLegBackBone:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12.0673, -15.9493)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D/TorsoBone/UpperLegBackBone:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0908696]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("IKTargets/ArmTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(295, -9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t3jkh"]
+_data = {
+"squat": SubResource("Animation_qaom1"),
+"stand": SubResource("Animation_qgsux")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_thnng"]
+animation = &"squat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lcga5"]
+animation = &"stand"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ixixm"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_thnng")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_lcga5")
+blend_point_1/pos = 1.0
 
 [node name="TempCharacter" type="Node2D"]
 
 [node name="UpperArmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(64.4103, -225.968)
-rotation = -0.497267
-scale = Vector2(0.999968, 0.999968)
+position = Vector2(183.95, 300.539)
+rotation = -0.184547
+scale = Vector2(0.999886, 0.999886)
 texture = ExtResource("1_bcg64")
 
 [node name="ForearmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(206.091, -205.451)
-rotation = -1.44072
-scale = Vector2(0.999952, 0.999952)
+position = Vector2(248.657, 431.886)
+rotation = -0.185949
+scale = Vector2(0.999871, 0.999871)
 texture = ExtResource("2_v54rd")
 
 [node name="BoxSprite" type="Sprite2D" parent="."]
-position = Vector2(280, -310)
+position = Vector2(353, 512)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_5squ7")
 
 [node name="UpperLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(51, 231)
+position = Vector2(170.099, 350.784)
+rotation = -1.877
+scale = Vector2(0.999845, 0.999845)
 texture = ExtResource("3_xvsij")
 
 [node name="LowerLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(53, 343)
+position = Vector2(186.919, 534.247)
+rotation = 0.16581
+scale = Vector2(0.999746, 0.999746)
 texture = ExtResource("4_v6yke")
 
 [node name="UpperLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(32, 246)
+position = Vector2(96.6975, 374.325)
+rotation = -1.85002
+scale = Vector2(0.999833, 0.999833)
 texture = ExtResource("1_jqiy4")
 
 [node name="LowerLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(32, 358)
+position = Vector2(135.762, 546.295)
+rotation = 0.0438479
+scale = Vector2(0.999729, 0.999729)
 texture = ExtResource("2_634nf")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(121, 69)
 modification_stack = SubResource("SkeletonModificationStack2D_kggbr")
 
 [node name="TorsoBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(-169, 377)
+rotation = 0.641807
+scale = Vector2(0.999974, 0.999974)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="TorsoSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone"]
 texture = ExtResource("1_0mpss")
 
 [node name="HeadBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(0, -416)
-rest = Transform2D(1, 0, 0, 1, 0, -416)
+position = Vector2(-15.0005, -423.999)
+rotation = 0.607473
+scale = Vector2(0.999973, 0.999973)
+rest = Transform2D(0.486756, 0.873531, -0.873531, 0.486756, -15, -424)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
+metadata/_local_pose_override_enabled_ = true
 
 [node name="HeadSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone/HeadBone"]
-position = Vector2(0, -56)
+position = Vector2(-17.507, -44.3795)
+rotation = -0.668143
 texture = ExtResource("2_fqb6i")
-
-[node name="UpperArmFrontBoneBTOKE" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-visible = false
-position = Vector2(-51, -328)
-rest = Transform2D(1, 0, 0, 1, -51, -328)
-
-[node name="UpperArmFrontSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBoneBTOKE"]
-position = Vector2(34, 132)
-texture = ExtResource("3_ermru")
-
-[node name="ForearmFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBoneBTOKE"]
-position = Vector2(34, 181)
-rest = Transform2D(1, 0, 0, 1, 34, 181)
-auto_calculate_length_and_angle = false
-length = 145.0
-bone_angle = 75.81
-
-[node name="ForearmFrontSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBoneBTOKE/ForearmFrontBone"]
-position = Vector2(20, 109)
-texture = ExtResource("4_5hb8f")
 
 [node name="UpperArmFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
 position = Vector2(-3, -336)
-rotation = -0.0906192
-scale = Vector2(0.999963, 0.999963)
-rest = Transform2D(1, 0, 0, 1, -51, -328)
+rotation = -0.829116
+scale = Vector2(0.999913, 0.999913)
+rest = Transform2D(0.999173, -0.039629, 0.039629, 0.999173, -3, -336)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="UpperArmFrontSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone"]
@@ -126,7 +364,7 @@ texture = ExtResource("3_ermru")
 position = Vector2(34.5029, 183.884)
 rotation = -1.28892
 scale = Vector2(0.999984, 0.999984)
-rest = Transform2D(1, 0, 0, 1, 34, 181)
+rest = Transform2D(0.66415, -0.747574, 0.747574, 0.66415, 34.5029, 183.884)
 auto_calculate_length_and_angle = false
 length = 145.0
 bone_angle = 75.81
@@ -140,7 +378,7 @@ texture = ExtResource("4_5hb8f")
 position = Vector2(-13, -343)
 rotation = -0.12634
 scale = Vector2(0.999992, 0.999992)
-rest = Transform2D(1, 0, 0, 1, -51, -328)
+rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/TorsoBone/UpperArmBackBone"]
@@ -151,7 +389,7 @@ remote_path = NodePath("../../../../UpperArmBackSprite")
 position = Vector2(34, 181)
 rotation = 0.101932
 scale = Vector2(0.999999, 0.999999)
-rest = Transform2D(1, 0, 0, 1, 34, 181)
+rest = Transform2D(0.81541, -0.578874, 0.578874, 0.81541, 34, 181)
 auto_calculate_length_and_angle = false
 length = 145.0
 bone_angle = 75.81
@@ -163,43 +401,82 @@ rotation = -0.0633832
 remote_path = NodePath("../../../../../ForearmBackSprite")
 
 [node name="UpperLegFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(-16, 248)
-rest = Transform2D(1, 0, 0, 1, -16, 248)
+position = Vector2(-23.7108, 65.161)
+rotation = -2.36682
+scale = Vector2(0.999859, 0.999859)
+rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/TorsoBone/UpperLegFrontBone"]
-position = Vector2(48, 0)
+position = Vector2(77.2518, 217.174)
+rotation = -0.125015
 remote_path = NodePath("../../../../UpperLegFrontSprite")
 
 [node name="LowerLegFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone/UpperLegFrontBone"]
-position = Vector2(8, 208)
-rest = Transform2D(1, 0, 0, 1, 8, 208)
+position = Vector2(31.3273, 207.656)
+rotation = -2.17643
+scale = Vector2(0.999931, 0.999931)
+rest = Transform2D(0.81541, -0.578874, 0.578874, 0.81541, 34, 181)
+auto_calculate_length_and_angle = false
+length = 220.0
+bone_angle = -54.821
+metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/TorsoBone/UpperLegFrontBone/LowerLegFrontBone"]
-position = Vector2(40, -96)
+position = Vector2(60.2409, -117.281)
+rotation = -2.30363
 remote_path = NodePath("../../../../../LowerLegFrontSprite")
 
 [node name="UpperLegBackBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(19, 233)
-rest = Transform2D(1, 0, 0, 1, 19, 233)
+position = Vector2(9.71308, 51.4173)
+rotation = -2.41867
+scale = Vector2(0.999871, 0.999871)
+rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/TorsoBone/UpperLegBackBone"]
-position = Vector2(32, 0)
+position = Vector2(89.8904, 265.137)
+rotation = -0.100145
 remote_path = NodePath("../../../../UpperLegBackSprite")
 
 [node name="LowerLegBackBone" type="Bone2D" parent="Skeleton2D/TorsoBone/UpperLegBackBone"]
-position = Vector2(-17, 207)
-rest = Transform2D(1, 0, 0, 1, -17, 207)
+position = Vector2(39.119, 239.203)
+rotation = -2.25482
+scale = Vector2(0.999967, 0.999967)
+rest = Transform2D(0.81541, -0.578874, 0.578874, 0.81541, 34, 181)
+auto_calculate_length_and_angle = false
+length = 220.0
+bone_angle = -46.796
+metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton2D/TorsoBone/UpperLegBackBone/LowerLegBackBone"]
-position = Vector2(51, -95)
+position = Vector2(54.6579, -120.572)
+rotation = -2.3074
 remote_path = NodePath("../../../../../LowerLegBackSprite")
 
 [node name="IKTargets" type="Node2D" parent="."]
 
 [node name="ArmTarget" type="Node2D" parent="IKTargets"]
-position = Vector2(248, -210)
+position = Vector2(321, 612)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="IKTargets/ArmTarget"]
 position = Vector2(32, -100)
 scale = Vector2(1.6, 1.6)
 remote_path = NodePath("../../../BoxSprite")
+
+[node name="LegsTarget" type="Node2D" parent="IKTargets"]
+position = Vector2(107, 639)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t3jkh")
+}
+autoplay = "squat"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t3jkh")
+}
+tree_root = SubResource("AnimationNodeBlendSpace1D_ixixm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = -1.5502

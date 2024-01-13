@@ -1,6 +1,8 @@
+AnimationTree
+AnimationPlayer
 RemoteTransform2D
-Sprite2D
 Bone2D
 Node2D
+Sprite2D
 Marker2D
 Skeleton2D
