@@ -40,14 +40,14 @@ constraint_angle_invert = true
 constraint_in_localspace = true
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_jqcvf"]
-target_nodepath = NodePath("../IKTargets/LegsTarget")
+target_nodepath = NodePath("../IKTargets/FrontLegTarget")
 joint_one_bone_idx = 6
 joint_one_bone2d_node = NodePath("TorsoBone/UpperLegFrontBone")
 joint_two_bone_idx = 7
 joint_two_bone2d_node = NodePath("TorsoBone/UpperLegFrontBone/LowerLegFrontBone")
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_u0dmq"]
-target_nodepath = NodePath("../IKTargets/LegsTarget")
+target_nodepath = NodePath("../IKTargets/BackLegTarget")
 joint_one_bone_idx = 8
 joint_one_bone2d_node = NodePath("TorsoBone/UpperLegBackBone")
 joint_two_bone_idx = 9
@@ -103,7 +103,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("IKTargets/LegsTarget:position")
+tracks/3/path = NodePath("IKTargets/FrontLegTarget:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -160,6 +160,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [-2.41867]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("IKTargets/BackLegTarget:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 628)]
+}
 
 [sub_resource type="Animation" id="Animation_qgsux"]
 resource_name = "stand"
@@ -190,7 +202,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("IKTargets/LegsTarget:position")
+tracks/2/path = NodePath("IKTargets/FrontLegTarget:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -259,6 +271,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(295, -9)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("IKTargets/BackLegTarget:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(126, 656)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t3jkh"]
 _data = {
@@ -283,44 +307,44 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_q3yd7")
 
 [node name="UpperArmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(183.953, 300.55)
-rotation = -0.184547
-scale = Vector2(0.999965, 0.999965)
+position = Vector2(118.881, -13.333)
+rotation = -0.305665
+scale = Vector2(0.99994, 0.99994)
 texture = ExtResource("1_bcg64")
 
 [node name="ForearmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(248.665, 431.907)
-rotation = -0.18595
-scale = Vector2(0.999949, 0.999949)
+position = Vector2(254.028, 0.910585)
+rotation = -1.56993
+scale = Vector2(0.999924, 0.999924)
 texture = ExtResource("2_v54rd")
 
 [node name="BoxSprite" type="Sprite2D" parent="."]
-position = Vector2(353, 512)
+position = Vector2(327, -109)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_5squ7")
 
 [node name="UpperLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(170.097, 350.783)
-rotation = -1.87701
-scale = Vector2(0.999843, 0.999843)
+position = Vector2(157.549, 454.125)
+rotation = -0.00964975
+scale = Vector2(0.999812, 0.999812)
 texture = ExtResource("3_xvsij")
 
 [node name="LowerLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(176.746, 536.354)
-rotation = 0.244323
-scale = Vector2(0.99981, 0.99981)
+position = Vector2(160.884, 545.618)
+rotation = 0.00853175
+scale = Vector2(0.999778, 0.999778)
 texture = ExtResource("4_v6yke")
 
 [node name="UpperLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(96.6966, 374.324)
-rotation = -1.85003
-scale = Vector2(0.999831, 0.999831)
+position = Vector2(144.512, 439.462)
+rotation = -0.0937841
+scale = Vector2(0.999806, 0.999806)
 texture = ExtResource("1_jqiy4")
 
 [node name="LowerLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(119.368, 550.577)
-rotation = 0.172473
-scale = Vector2(0.999762, 0.999762)
+position = Vector2(132.546, 555.967)
+rotation = 0.105472
+scale = Vector2(0.999736, 0.999736)
 texture = ExtResource("2_634nf")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
@@ -328,9 +352,9 @@ position = Vector2(121, 69)
 modification_stack = SubResource("SkeletonModificationStack2D_kggbr")
 
 [node name="TorsoBone" type="Bone2D" parent="Skeleton2D"]
-position = Vector2(-169, 377)
-rotation = 0.641807
-scale = Vector2(0.999973, 0.999973)
+position = Vector2(-41, 129)
+rotation = -0.00421112
+scale = Vector2(0.999947, 0.999947)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="TorsoSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone"]
@@ -404,8 +428,8 @@ rotation = -0.0633832
 remote_path = NodePath("../../../../../ForearmBackSprite")
 
 [node name="UpperLegFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(-23.7108, 65.161)
-rotation = -2.36682
+position = Vector2(-6, 22)
+rotation = 0.0806947
 scale = Vector2(0.999858, 0.999858)
 rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
 metadata/_local_pose_override_enabled_ = true
@@ -417,7 +441,7 @@ remote_path = NodePath("../../../../UpperLegFrontSprite")
 
 [node name="LowerLegFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone/UpperLegFrontBone"]
 position = Vector2(31.3273, 207.656)
-rotation = -2.17643
+rotation = 2.37787
 scale = Vector2(0.999931, 0.999931)
 rest = Transform2D(0.81541, -0.578874, 0.578874, 0.81541, 34, 181)
 auto_calculate_length_and_angle = false
@@ -431,9 +455,9 @@ rotation = -2.30363
 remote_path = NodePath("../../../../../LowerLegFrontSprite")
 
 [node name="UpperLegBackBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(9.71308, 51.4173)
-rotation = -2.41867
-scale = Vector2(0.999869, 0.999869)
+position = Vector2(12.0673, -15.9493)
+rotation = 0.0908696
+scale = Vector2(0.999864, 0.999864)
 rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
 metadata/_local_pose_override_enabled_ = true
 
@@ -460,15 +484,18 @@ remote_path = NodePath("../../../../../LowerLegBackSprite")
 [node name="IKTargets" type="Node2D" parent="."]
 
 [node name="ArmTarget" type="Node2D" parent="IKTargets"]
-position = Vector2(321, 612)
+position = Vector2(295, -9)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="IKTargets/ArmTarget"]
 position = Vector2(32, -100)
 scale = Vector2(1.6, 1.6)
 remote_path = NodePath("../../../BoxSprite")
 
-[node name="LegsTarget" type="Node2D" parent="IKTargets"]
-position = Vector2(107, 639)
+[node name="FrontLegTarget" type="Node2D" parent="IKTargets"]
+position = Vector2(126, 656)
+
+[node name="BackLegTarget" type="Node2D" parent="IKTargets"]
+position = Vector2(126, 656)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -477,9 +504,10 @@ libraries = {
 autoplay = "squat"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_t3jkh")
 }
 tree_root = SubResource("AnimationNodeBlendSpace1D_ixixm")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = -1.29518
+parameters/blend_position = 1.59562
