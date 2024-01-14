@@ -1,2 +1,8 @@
 res://src/characters/temp/TempCharacter.tscn
 res://assets/environment/textures/Architecture/room_1_3x3.tres
+res://src/characters/temp/temp_character.gd
+res://src/levels/test_level/TestLevel.tscn
+res://src/ui/main/squat_controls/SquatControlUI.tscn
+res://src/levels/3d_test/Test3DEnv.tscn
+res://src/env/box/box.tscn
+res://src/levels/test_joints/TestJoints.tscn

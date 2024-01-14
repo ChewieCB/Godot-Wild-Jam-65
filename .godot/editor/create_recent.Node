@@ -1,7 +1,10 @@
-CharacterBody2D
-Marker2D
-RigidBody2D
 CollisionShape2D
+Camera2D
+PinJoint2D
+RigidBody2D
+StaticBody2D
+Marker2D
+CharacterBody2D
 MeshInstance3D
 MultiMeshInstance3D
 GridMap
@@ -9,7 +12,3 @@ WorldEnvironment
 SubViewportContainer
 CanvasLayer
 SubViewport
-Camera3D
-TextureRect
-Label
-MarginContainer

@@ -1,13 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx0u470l8wia5"]
+[gd_scene load_steps=5 format=3 uid="uid://dx0u470l8wia5"]
 
+[ext_resource type="Script" path="res://src/levels/test_level/TestLevel.gd" id="1_j1tio"]
 [ext_resource type="PackedScene" uid="uid://c1j28f121d177" path="res://src/characters/temp/TempCharacter.tscn" id="1_mtmer"]
 [ext_resource type="PackedScene" uid="uid://cuiv2rf5m1g2l" path="res://src/ui/main/squat_controls/SquatControlUI.tscn" id="2_cf8s5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twh7a"]
+size = Vector2(1562, 22)
+
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_j1tio")
 
 [node name="TempCharacter" parent="." instance=ExtResource("1_mtmer")]
-position = Vector2(168, 280)
+position = Vector2(131, -60)
+scale = Vector2(1, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="SquatControlUI" parent="UI" instance=ExtResource("2_cf8s5")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="BoxSpawn" type="Marker2D" parent="."]
+position = Vector2(453, -789)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(25, 653)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(348, 1)
+shape = SubResource("RectangleShape2D_twh7a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(710, 28)
+zoom = Vector2(0.5, 0.5)
