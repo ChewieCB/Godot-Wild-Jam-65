@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c1j28f121d177"]
+[gd_scene load_steps=40 format=3 uid="uid://c1j28f121d177"]
 
 [ext_resource type="Texture2D" uid="uid://8mqx0exwbsfu" path="res://assets/characters/temp/sprites/Torso.png" id="1_0mpss"]
 [ext_resource type="Texture2D" uid="uid://wys1kyub6vcq" path="res://assets/characters/temp/sprites/BackArm.png" id="1_bcg64"]
@@ -61,24 +61,25 @@ modifications/2 = SubResource("SkeletonModification2DLookAt_y348n")
 modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_jqcvf")
 modifications/4 = SubResource("SkeletonModification2DTwoBoneIK_u0dmq")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjbr1"]
-radius = 82.3998
-height = 465.628
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve5aq"]
+radius = 83.9965
+height = 436.532
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6dh8x"]
-radius = 54.4171
-height = 217.61
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7lx1"]
+radius = 52.9209
+height = 139.835
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dam4h"]
-radius = 35.7243
-height = 205.38
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4er2a"]
+radius = 37.9261
+height = 217.441
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dagka"]
-radius = 23.2854
-height = 192.034
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_44ty0"]
+radius = 30.447
+height = 201.243
 
 [sub_resource type="Animation" id="Animation_qaom1"]
 resource_name = "squat"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,6 +191,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_qgsux"]
 resource_name = "stand"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -359,6 +361,25 @@ _data = {
 "walk": SubResource("Animation_h8trm")
 }
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_u7wbw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bn0pe"]
+animation = &"stand"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tddca"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dfp8s"]
+graph_offset = Vector2(-174, 42)
+nodes/output/position = Vector2(440, 160)
+nodes/stand/node = SubResource("AnimationNodeAnimation_bn0pe")
+nodes/stand/position = Vector2(60, 80)
+nodes/stand-walk/node = SubResource("AnimationNodeBlend2_u7wbw")
+nodes/stand-walk/position = Vector2(280, 120)
+nodes/walk/node = SubResource("AnimationNodeAnimation_tddca")
+nodes/walk/position = Vector2(60, 200)
+node_connections = [&"output", 0, &"stand-walk", &"stand-walk", 0, &"stand", &"stand-walk", 1, &"walk"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h7yns"]
 animation = &"squat"
 
@@ -377,20 +398,24 @@ animation = &"walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kvu6k"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0x8qn"]
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hlx4q"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p335v"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tyk1q"]
-states/Squat/node = SubResource("AnimationNodeBlendSpace1D_ervqj")
-states/Squat/position = Vector2(342, 115)
+states/Start/position = Vector2(185, 115)
+states/squat/node = SubResource("AnimationNodeBlendSpace1D_ervqj")
+states/squat/position = Vector2(342, 115)
+states/squat-walk/node = SubResource("AnimationNodeBlendTree_dfp8s")
+states/squat-walk/position = Vector2(471, 115)
 states/walk/node = SubResource("AnimationNodeAnimation_ktdtr")
-states/walk/position = Vector2(501, 115)
-transitions = ["Start", "Squat", SubResource("AnimationNodeStateMachineTransition_kvu6k"), "Squat", "walk", SubResource("AnimationNodeStateMachineTransition_0x8qn")]
-graph_offset = Vector2(34, 31)
+states/walk/position = Vector2(621, 115)
+transitions = ["Start", "squat", SubResource("AnimationNodeStateMachineTransition_kvu6k"), "squat", "squat-walk", SubResource("AnimationNodeStateMachineTransition_hlx4q"), "squat-walk", "walk", SubResource("AnimationNodeStateMachineTransition_p335v")]
+graph_offset = Vector2(-49, 51)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qi82"]
-size = Vector2(140, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4yg6"]
+radius = 26.0001
+height = 64.0002
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w52e8"]
 size = Vector2(1252, 20)
@@ -400,39 +425,39 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_q3yd7")
 
 [node name="UpperArmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(159.337, 22.1024)
-rotation = -2.97447
-scale = Vector2(0.999728, 0.999728)
+position = Vector2(201.221, 36.9859)
+rotation = -0.401488
+scale = Vector2(0.99982, 0.99982)
 texture = ExtResource("1_bcg64")
 
 [node name="ForearmBackSprite" type="Sprite2D" parent="."]
-position = Vector2(41.3311, -8.22026)
-rotation = 1.61266
-scale = Vector2(0.999606, 0.999606)
+position = Vector2(292.34, -22.7162)
+rotation = -2.41816
+scale = Vector2(0.999818, 0.999818)
 texture = ExtResource("2_v54rd")
 
 [node name="UpperLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(170.065, 350.798)
-rotation = -1.87701
-scale = Vector2(0.999698, 0.999698)
+position = Vector2(245.526, 505.118)
+rotation = -0.0763436
+scale = Vector2(0.999679, 0.999679)
 texture = ExtResource("3_xvsij")
 
 [node name="LowerLegBackSprite" type="Sprite2D" parent="."]
-position = Vector2(213.277, 524.62)
-rotation = -0.046864
-scale = Vector2(0.999553, 0.999553)
+position = Vector2(254.95, 596.172)
+rotation = -0.058162
+scale = Vector2(0.999643, 0.999643)
 texture = ExtResource("4_v6yke")
 
 [node name="UpperLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(96.676, 374.334)
-rotation = -1.85003
-scale = Vector2(0.999695, 0.999695)
+position = Vector2(230.99, 489.443)
+rotation = -0.169922
+scale = Vector2(0.999691, 0.999691)
 texture = ExtResource("1_jqiy4")
 
 [node name="LowerLegFrontSprite" type="Sprite2D" parent="."]
-position = Vector2(154.487, 538.418)
-rotation = -0.110589
-scale = Vector2(0.999559, 0.999559)
+position = Vector2(64.9014, 536.945)
+rotation = 1.50422
+scale = Vector2(0.99962, 0.99962)
 texture = ExtResource("2_634nf")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
@@ -440,13 +465,22 @@ position = Vector2(121, 69)
 modification_stack = SubResource("SkeletonModificationStack2D_kggbr")
 
 [node name="TorsoBone" type="Bone2D" parent="Skeleton2D"]
-position = Vector2(-169, 377)
-rotation = 0.641807
-scale = Vector2(0.999853, 0.999853)
+position = Vector2(29, 185)
+rotation = -0.00421118
+scale = Vector2(0.999832, 0.999832)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="TorsoSprite" type="Sprite2D" parent="Skeleton2D/TorsoBone"]
 texture = ExtResource("1_0mpss")
+
+[node name="TorsoRigid" type="RigidBody2D" parent="Skeleton2D/TorsoBone"]
+collision_layer = 2
+gravity_scale = 0.0
+
+[node name="TorsoCollider" type="CollisionShape2D" parent="Skeleton2D/TorsoBone/TorsoRigid"]
+position = Vector2(-1.20007, -190.039)
+rotation = -0.0407881
+shape = SubResource("CapsuleShape2D_ve5aq")
 
 [node name="HeadBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
 position = Vector2(-15.0005, -423.999)
@@ -463,6 +497,15 @@ position = Vector2(-17.507, -44.3795)
 rotation = -0.668143
 texture = ExtResource("2_fqb6i")
 
+[node name="HeadRigid" type="RigidBody2D" parent="Skeleton2D/TorsoBone/HeadBone"]
+collision_layer = 2
+gravity_scale = 0.0
+
+[node name="HeadCollider" type="CollisionShape2D" parent="Skeleton2D/TorsoBone/HeadBone/HeadRigid"]
+position = Vector2(-12.7251, -42.1498)
+rotation = -1.11251
+shape = SubResource("CapsuleShape2D_e7lx1")
+
 [node name="UpperArmFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
 position = Vector2(-3, -336)
 rotation = -0.829116
@@ -474,6 +517,15 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(29.7029, 148.302)
 rotation = -0.139399
 texture = ExtResource("3_ermru")
+
+[node name="UpperArmFrontRigid" type="RigidBody2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone"]
+position = Vector2(3.27113, 77.0229)
+rotation = -0.212741
+collision_layer = 2
+gravity_scale = 0.0
+
+[node name="UpperArmFrontCollider" type="CollisionShape2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone/UpperArmFrontRigid"]
+shape = SubResource("CapsuleShape2D_4er2a")
 
 [node name="ForearmFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone"]
 position = Vector2(34.5029, 183.884)
@@ -491,6 +543,16 @@ texture = ExtResource("4_5hb8f")
 
 [node name="ColliderAnchor" type="Marker2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone/ForearmFrontBone"]
 position = Vector2(30.6155, 147.484)
+
+[node name="ForearmFrontRigid" type="RigidBody2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone/ForearmFrontBone"]
+position = Vector2(10.1877, 68.881)
+rotation = -0.23686
+collision_layer = 2
+gravity_scale = 0.0
+
+[node name="ForearmFrontCollider" type="CollisionShape2D" parent="Skeleton2D/TorsoBone/UpperArmFrontBone/ForearmFrontBone/ForearmFrontRigid"]
+position = Vector2(1.74195, 0.983768)
+shape = SubResource("CapsuleShape2D_44ty0")
 
 [node name="UpperArmBackBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
 position = Vector2(-13, -343)
@@ -519,9 +581,9 @@ rotation = -0.0633832
 remote_path = NodePath("../../../../../ForearmBackSprite")
 
 [node name="UpperLegFrontBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(-23.7108, 65.161)
-rotation = -2.36682
-scale = Vector2(0.999842, 0.999842)
+position = Vector2(-6, 22)
+rotation = 0.0806947
+scale = Vector2(0.999859, 0.999859)
 rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
 metadata/_local_pose_override_enabled_ = true
 
@@ -546,9 +608,9 @@ rotation = -2.30363
 remote_path = NodePath("../../../../../LowerLegFrontSprite")
 
 [node name="UpperLegBackBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
-position = Vector2(9.71308, 51.4173)
-rotation = -2.41867
-scale = Vector2(0.999845, 0.999845)
+position = Vector2(12.0673, -15.9493)
+rotation = 0.0908696
+scale = Vector2(0.999847, 0.999847)
 rest = Transform2D(0.989252, -0.146126, 0.146126, 0.989252, -13, -343)
 metadata/_local_pose_override_enabled_ = true
 
@@ -572,117 +634,16 @@ position = Vector2(54.6579, -120.572)
 rotation = -2.3074
 remote_path = NodePath("../../../../../LowerLegBackSprite")
 
-[node name="TorsoRigid" type="RigidBody2D" parent="."]
-visible = false
-position = Vector2(82, 22)
-rotation = -0.0939361
-scale = Vector2(0.999936, 0.999936)
-collision_layer = 2
-mass = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoRigid"]
-shape = SubResource("CapsuleShape2D_qjbr1")
-
-[node name="FrontThighJoint" type="PinJoint2D" parent="TorsoRigid"]
-position = Vector2(40.7909, 206.751)
-rotation = -0.176455
-scale = Vector2(1.00007, 1.00007)
-node_a = NodePath("..")
-node_b = NodePath("UpperLegRigid")
-angular_limit_enabled = true
-angular_limit_lower = -0.523599
-angular_limit_upper = 0.523599
-
-[node name="UpperLegRigid" type="RigidBody2D" parent="TorsoRigid/FrontThighJoint"]
-position = Vector2(19.1053, 88.3116)
-rotation = -3.11606
-scale = Vector2(0.99979, 0.99979)
-collision_layer = 2
-mass = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoRigid/FrontThighJoint/UpperLegRigid"]
-shape = SubResource("CapsuleShape2D_6dh8x")
-
-[node name="FrontCalfJoint" type="PinJoint2D" parent="TorsoRigid/FrontThighJoint/UpperLegRigid"]
-position = Vector2(1.92951, -90.242)
-rotation = -2.89674
-scale = Vector2(0.999931, 0.999931)
-node_a = NodePath("..")
-node_b = NodePath("LowerLegRigid")
-angular_limit_enabled = true
-angular_limit_lower = -0.523599
-angular_limit_upper = 0.523599
-
-[node name="LowerLegRigid" type="RigidBody2D" parent="TorsoRigid/FrontThighJoint/UpperLegRigid/FrontCalfJoint"]
-position = Vector2(18.0049, 90.0248)
-rotation = 2.56164
-collision_layer = 2
-mass = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoRigid/FrontThighJoint/UpperLegRigid/FrontCalfJoint/LowerLegRigid"]
-rotation = 0.365882
-shape = SubResource("CapsuleShape2D_dam4h")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TorsoRigid/FrontThighJoint/UpperLegRigid/FrontCalfJoint/LowerLegRigid"]
-position = Vector2(7.29564, -140.533)
-rotation = -1.0901
-shape = SubResource("CapsuleShape2D_dagka")
-
-[node name="BackThighJoint" type="PinJoint2D" parent="TorsoRigid"]
-position = Vector2(-51.8627, 187.976)
-rotation = 0.0939361
-scale = Vector2(1.00006, 1.00006)
-node_a = NodePath("..")
-node_b = NodePath("BackUpperLegRigid")
-angular_limit_enabled = true
-angular_limit_lower = -0.523599
-angular_limit_upper = 0.523599
-
-[node name="BackUpperLegRigid" type="RigidBody2D" parent="TorsoRigid/BackThighJoint"]
-position = Vector2(-58, 74)
-rotation = -2.52988
-scale = Vector2(0.999794, 0.999794)
-collision_layer = 2
-mass = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoRigid/BackThighJoint/BackUpperLegRigid"]
-shape = SubResource("CapsuleShape2D_6dh8x")
-
-[node name="BackCalfJoint" type="PinJoint2D" parent="TorsoRigid/BackThighJoint/BackUpperLegRigid"]
-position = Vector2(-22.706, -91.5866)
-rotation = 2.52988
-scale = Vector2(1.00021, 1.00021)
-node_a = NodePath("..")
-node_b = NodePath("BackLowerLegRigid")
-angular_limit_enabled = true
-angular_limit_lower = -0.523599
-angular_limit_upper = 0.523599
-
-[node name="BackLowerLegRigid" type="RigidBody2D" parent="TorsoRigid/BackThighJoint/BackUpperLegRigid/BackCalfJoint"]
-position = Vector2(-8.00001, 88)
-rotation = 2.83211
-scale = Vector2(0.999725, 0.999725)
-collision_layer = 2
-mass = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TorsoRigid/BackThighJoint/BackUpperLegRigid/BackCalfJoint/BackLowerLegRigid"]
-rotation = 0.365882
-shape = SubResource("CapsuleShape2D_dam4h")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TorsoRigid/BackThighJoint/BackUpperLegRigid/BackCalfJoint/BackLowerLegRigid"]
-position = Vector2(7.29564, -140.533)
-rotation = -1.0901
-shape = SubResource("CapsuleShape2D_dagka")
-
 [node name="IKTargets" type="Node2D" parent="."]
 
 [node name="ArmTarget" type="Node2D" parent="IKTargets"]
+position = Vector2(312, -60)
 
 [node name="FrontLegTarget" type="Node2D" parent="IKTargets"]
-position = Vector2(144, 665)
+position = Vector2(-26, 545)
 
 [node name="BackLegTarget" type="Node2D" parent="IKTargets"]
-position = Vector2(165, 654)
+position = Vector2(227, 705)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -691,22 +652,31 @@ libraries = {
 autoplay = "squat"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_t3jkh")
 }
 tree_root = SubResource("AnimationNodeStateMachine_tyk1q")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Squat/blend_position = -1.55459
+parameters/squat/blend_position = -1.0
+parameters/squat-walk/stand-walk/blend_amount = 1.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(1.52588e-05, 7.62939e-06)
+position = Vector2(366, 18)
 scale = Vector2(0.999997, 0.999997)
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-8.00004, 0)
-shape = SubResource("RectangleShape2D_8qi82")
-disabled = true
+[node name="Collider1" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-64.0002, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w4yg6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32.0001, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w4yg6")
+
+[node name="FloorRef" type="CollisionShape2D" parent="."]
 position = Vector2(166, 712)
 shape = SubResource("RectangleShape2D_w52e8")
+disabled = true

@@ -1,6 +1,8 @@
 extends Node2D
 
+@onready var anim_player = $AnimationPlayer
 @onready var anim_tree = $AnimationTree
+@onready var anim_state_machine = anim_tree["parameters/playback"]
 @onready var arm_collider = $StaticBody2D
 @onready var arm_collider_anchor = $Skeleton2D/TorsoBone/UpperArmFrontBone/ForearmFrontBone/ColliderAnchor
 @onready var arm_target = $IKTargets/ArmTarget
@@ -20,6 +22,11 @@ var thighs_active: bool = false
 var calves_active: bool = false
 
 
+func _ready():
+	anim_tree.active = true
+	anim_state_machine.start("squat")
+
+
 func _input(event):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
@@ -32,7 +39,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	if is_squatting:
-		var current_blend_pos = anim_tree["parameters/blend_position"]
+		var current_blend_pos = anim_tree["parameters/squat/blend_position"]
 		var new_blend_pos: float = current_blend_pos - squat_loss_rate
 		
 		if Input.is_action_just_released("squat_left"):
@@ -50,14 +57,14 @@ func _process(delta):
 		new_blend_pos = clamp(new_blend_pos, -1, 1)
 		
 		anim_tree.set(
-			"parameters/blend_position", 
+			"parameters/squat/blend_position", 
 			new_blend_pos
 		)
-		print(anim_tree["parameters/blend_position"])
+		print(anim_tree["parameters/squat/blend_position"])
 		if new_blend_pos == 1.0:
 			is_squatting = false
 			is_walking = true
-			#for _body in rigid_bodies:
-				#_body.gravity_scale = 1
+			anim_tree.active = false
+			anim_player.play("walk")
 	elif is_walking:
 		pass
